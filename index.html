@@ -1,0 +1,31 @@
+<html>
+  <header>
+  <title>Pokemon</title>
+  <style>
+    body {
+      background: white; 
+    }
+
+    #game-canvas {
+      position: absolute;
+      left: 50%; 
+      top: 50%; 
+      transform: translate(-%50, -%50); 
+      border-radius: 32px; 
+      box-shadow: 0px 0px 32px rgba(255, 255, 255, 0.5); 
+    }
+
+    img {
+      display: none; 
+    }
+  </style>
+  <img src="images/ash.png" id="ash"> 
+</header>
+
+<body>
+  <canvas width="860" height="640" id="canvas" style="border: 2px solid black;"></canvas>
+  <script src="./scripts/player.js"></script>
+  <script src="./scripts/game.js"></script>
+</body>
+  
+</html>
