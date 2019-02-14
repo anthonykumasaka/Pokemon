@@ -24,6 +24,7 @@ var player = new Ash(32, 240, 256/4, 256/4);
 //handle keyboard inputs - Based on JS even listener loop
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 39) {
+    
     player.moveRight(); 
   }
   if (event.keyCode === 37) {

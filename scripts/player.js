@@ -47,36 +47,40 @@ Ash.prototype.update = function () {
 
   //this.frame = ++this.frame % this.cols; /// 1 % 4 = 1, 2 % 8 = 2... 8 % 5 = 0
  // this.srcX = this.frame * this.w; 
-  if(this.left) {
+  if(this.left && this.pressed === true) {
     this.x -= 2; 
     this.srcY = this.trackLeft * this.h; 
-  } else if (this.right) {
+  } else if (this.right && this.pressed === true) {
     this.x += 2;
     this.srcY = this.trackRight * this.h;
-  } else if (this.up) {
+  } else if (this.up && this.pressed === true) {
     this.y -= 2;
     this.srcY = this.trackUp * this.h; 
-  } else if (this.down) {
+  } else if (this.down && this.pressed === true) {
     this.y += 2; 
     this.srcY = this.trackDown * this.h; 
   } else if (this.pause) { 
-    this.srcY = 0;
+    
     this.srcX = 0;  
   }
 }
 
 Ash.prototype.moveRight = function () {
- // this.pressed = true; 
+ this.pressed = true; 
   this.right = true; 
   this.left = false; 
 }
 
 Ash.prototype.moveLeft = function () {
+ this.pressed = true; 
+
   this.left = true; 
   this.right = false; 
 }
 
 Ash.prototype.moveDown = function () {
+ this.pressed = true; 
+
   this.down = true; 
   this.up = false; 
   this.right = false; 
@@ -84,6 +88,8 @@ Ash.prototype.moveDown = function () {
 }
 
 Ash.prototype.moveUp = function () {
+ this.pressed = true; 
+
   this.down = false; 
   this.up = true; 
   this.right = false; 
@@ -91,7 +97,7 @@ Ash.prototype.moveUp = function () {
 }
 
 Ash.prototype.movePause = function () {
-  this.pause = true;
+  this.pause = false;
   this.right = false; 
   this.left = false; 
   this.down = false; 
