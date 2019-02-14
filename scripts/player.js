@@ -17,23 +17,36 @@ function Ash(x, y, w, h) {
   this.trackDown = 0; 
   this.trackUp = 3; 
 
+  this.pressed = false;
+
   this.srcX = 0; 
   this.srcY = 0; 
 
   this.cols = 4; 
   this.rows = 4; 
 
+  //ticks?
+  this.tickCount = 0; 
+  this.frameIndex = 0; 
+  this.ticksPerFrame = 4; 
 }
 
 Ash.prototype.draw = function() {
-  ctx.drawImage(ash, this.srcX, this.srcY, this.w, this.h, this.x, this.y, this.w, this.h); 
+  ctx.drawImage(ash, this.srcX, this.srcY, this.w, this.h, this.x, this.y, this.w / 2, this.h /2); 
 }
 
 Ash.prototype.update = function () {
   ctx.clearRect(this.x,this.y, this.w, this.h); 
+  this.tickCount += 1;
 
-  this.frame = ++this.frame % this.cols; /// 1 % 4 = 1, 2 % 8 = 2... 8 % 5 = 0
-  this.srcX = this.frame * this.w; 
+  if (this.tickCount > this.ticksPerFrame) {
+    this.frame = ++this.frame % this.cols; /// 1 % 4 = 1, 2 % 8 = 2... 8 % 5 = 0
+    this.srcX = this.frame * this.w; 
+    this.tickCount = 0; 
+  }
+
+  //this.frame = ++this.frame % this.cols; /// 1 % 4 = 1, 2 % 8 = 2... 8 % 5 = 0
+ // this.srcX = this.frame * this.w; 
   if(this.left) {
     this.x -= 2; 
     this.srcY = this.trackLeft * this.h; 
@@ -53,6 +66,7 @@ Ash.prototype.update = function () {
 }
 
 Ash.prototype.moveRight = function () {
+ // this.pressed = true; 
   this.right = true; 
   this.left = false; 
 }
