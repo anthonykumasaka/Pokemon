@@ -3,7 +3,7 @@
   <title>Pokemon</title>
   <style>
     body {
-      background: black; 
+      background: white; 
       /* background: url('./images/bush.png') */
     }
 
@@ -12,8 +12,9 @@
       background: url('./images/pkbg2.jpg');
       background-repeat: no-repeat; 
       background-size: cover; 
+      image-rendering: pixelated;
 
-      /* left: 50%;  */
+      left: 10%; 
       /* top: 50%;  */
       transform: translate(-%50, -%50); 
       border-radius: 32px; 
@@ -28,6 +29,10 @@
 </header>
 
 <body>
+    <!-- 480 x 320 -->
+
+  <!-- 640 x 360  -->
+  <!-- 960 x 540 -->
   <canvas width="960" height="540" id="canvas" style="border: 2px solid black;"></canvas>
   <script src="./scripts/player.js"></script>
   <script src="./scripts/background.js"></script>
