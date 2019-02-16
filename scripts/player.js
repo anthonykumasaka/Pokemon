@@ -32,7 +32,7 @@ function Ash(x, y, w, h) {
 }
 
 Ash.prototype.draw = function() {
-  ctx.drawImage(ash, this.srcX, this.srcY, this.w, this.h, this.x, this.y, this.w / 2, this.h /2); 
+  ctx.drawImage(ash, this.srcX, this.srcY, this.w, this.h, this.x, this.y, this.w, this.h); 
 }
 
 Ash.prototype.update = function () {
