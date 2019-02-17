@@ -1,3 +1,4 @@
+
 // GLOBALS
 
 //Establish the screen 
@@ -17,12 +18,14 @@ ctx.strokeStyle = 'black';
 
 //load sprites into a global variable 
 var ash = document.getElementById('ash'); 
+var bg = document.getElementById('bg'); 
 let ashH = 256 / 4; 
 let ashW = 256 / 4;
 let ashX = (canvas.width / 2) - (ashW/2);
 let ashY = (canvas.height / 2) - (ashH/2)
 //objects 
-var player = new Ash(ashX, ashY, ashW, ashH); 
+var player = new Ash(ashX, ashY, ashW, ashH);
+var background = new Background(0, 0, 480, 360);  
 
 //
 var canvasX = 0; 
@@ -35,19 +38,19 @@ var canvasY = 0;
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 39) {
     player.moveRight(); 
-    // canvasX -= 5; 
+    canvasX += 2; 
   }
   if (event.keyCode === 37) {
     player.moveLeft(); 
-    // canvasX += 5; 
+    canvasX -= 2; 
   }
   if (event.keyCode === 38) {
     player.moveUp(); 
-    // canvasY += 5; 
+    canvasY-= 2; 
   }
   if (event.keyCode === 40) {
     player.moveDown(); 
-    // canvasY -= 5; 
+    canvasY += 2; 
   }
 })
 
@@ -55,20 +58,32 @@ document.addEventListener('keyup', function(event) {
   player.pressed = false; 
 }, false)
 
+function gameUpdate() {
+  // this.canvas.style.backgroundPosition = `${player.x}px ${player.y}px`; 
+}
+
+function gameDraw() {
+  
+}
 
 //Main Loop 
 function gameLoop() {
   //UPDATE CALLS 
   player.update(); 
+  background.update(canvasX, canvasY); 
+  // this.canvas.style.backgroundPosition = `${canvasX}px ${canvasY}px`; 
   
   //DRAW CALLS 
   //Clear sceen first 
   ctx.clearRect(player.x, player.y, player.w, player.h);
+  // this.canvas.style.backgroundPosition = `${player.x}px ${player.y}px`; 
   
+  //Draw bacground frist
+  background.draw(); 
   //DRAW FOREGROUND 
   player.draw(); 
 
-  // this.canvas.style.backgroundPosition = `${canvasX}px ${canvasY}px`; 
+  // console.log(background.x)
   console.log(player.x, player.y, player.w, player.y)
 
 
