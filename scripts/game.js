@@ -3,6 +3,8 @@
 //Establish the screen 
 var canvas = document.getElementById('canvas'); 
 var ctx = canvas.getContext('2d'); 
+canvas.width = "480"; 
+canvas.height = "320";
 
 //var bg = document.getElementById('bg'); 
 //canvasContext.drawImage(bg, 0, 0, 1024, 576)
@@ -15,26 +17,37 @@ ctx.strokeStyle = 'black';
 
 //load sprites into a global variable 
 var ash = document.getElementById('ash'); 
-
+let ashH = 256 / 4; 
+let ashW = 256 / 4;
+let ashX = (canvas.width / 2) - (ashW/2);
+let ashY = (canvas.height / 2) - (ashH/2)
 //objects 
-var player = new Ash(32, 240, 256/4, 256/4); 
+var player = new Ash(ashX, ashY, ashW, ashH); 
+
+//
+var canvasX = 0; 
+var canvasY = 0; 
+// console.log(player.x)
 
 //Inputs 
 
 //handle keyboard inputs - Based on JS even listener loop
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 39) {
-    
     player.moveRight(); 
+    // canvasX -= 5; 
   }
   if (event.keyCode === 37) {
     player.moveLeft(); 
+    // canvasX += 5; 
   }
   if (event.keyCode === 38) {
     player.moveUp(); 
+    // canvasY += 5; 
   }
   if (event.keyCode === 40) {
     player.moveDown(); 
+    // canvasY -= 5; 
   }
 })
 
@@ -47,13 +60,17 @@ document.addEventListener('keyup', function(event) {
 function gameLoop() {
   //UPDATE CALLS 
   player.update(); 
-
+  
   //DRAW CALLS 
   //Clear sceen first 
-  ctx.clearRect(ash.x, ash.y, ash.w, ash.h);
-
+  ctx.clearRect(player.x, player.y, player.w, player.h);
+  
   //DRAW FOREGROUND 
   player.draw(); 
+
+  // this.canvas.style.backgroundPosition = `${canvasX}px ${canvasY}px`; 
+  console.log(player.x, player.y, player.w, player.y)
+
 
   //RECURSIVE LOOP -call itself 
   window.requestAnimationFrame(gameLoop); 
