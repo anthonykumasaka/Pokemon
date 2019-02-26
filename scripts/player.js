@@ -73,7 +73,6 @@ Ash.prototype.moveRight = function () {
 
 Ash.prototype.moveLeft = function () {
  this.pressed = true; 
-
   this.left = true; 
   this.right = false; 
 }
