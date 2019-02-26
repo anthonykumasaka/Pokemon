@@ -38,19 +38,19 @@ var canvasY = 0;
 document.addEventListener('keydown', function(event) {
   if (event.keyCode === 39) {
     player.moveRight(); 
-    canvasX += 2; 
+    canvasX -= 2; 
   }
   if (event.keyCode === 37) {
     player.moveLeft(); 
-    canvasX -= 2; 
+    canvasX += 2; 
   }
   if (event.keyCode === 38) {
     player.moveUp(); 
-    canvasY-= 2; 
+    canvasY += 2; 
   }
   if (event.keyCode === 40) {
     player.moveDown(); 
-    canvasY += 2; 
+    canvasY -= 2; 
   }
 })
 
@@ -70,8 +70,8 @@ function gameDraw() {
 function gameLoop() {
   //UPDATE CALLS 
   player.update(); 
-  background.update(canvasX, canvasY); 
-  // this.canvas.style.backgroundPosition = `${canvasX}px ${canvasY}px`; 
+  // background.update(canvasX, canvasY); 
+  canvas.style.backgroundPosition = `${canvasX}px ${canvasY}px`; 
   
   //DRAW CALLS 
   //Clear sceen first 
@@ -79,7 +79,7 @@ function gameLoop() {
   // this.canvas.style.backgroundPosition = `${player.x}px ${player.y}px`; 
   
   //Draw bacground frist
-  background.draw(); 
+  // background.draw(); 
   //DRAW FOREGROUND 
   player.draw(); 
 
